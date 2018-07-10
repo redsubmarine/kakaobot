@@ -1,7 +1,6 @@
 const router = require('express').Router()
-const Papago = require('../utils/Papago')
-
-const papago = new Papago()
+const KakaoService = require('../services/kakao.service')
+const kakaoService = new KakaoService()
 
 router.get('/keyboard', (req, res) => {
   res.send({
@@ -12,14 +11,17 @@ router.get('/keyboard', (req, res) => {
 
 router.post('/message', (req, res) => {
   const { content, type } = req.body
+  
+  if (content === '번역언어 변경') {
+    return res.send(kakaoService.getTrLanguages())
+  }
 
-  papago.translate(content)
-    .then(data => {
-      const result = {
-        message: { text }
-      }
-      res.send(result)
-    })
+  if (content.includes('->')) {
+    return res.send(kakaoService.changeLanguage(content))
+  }
+
+  kakaoService.translate(content)
+    .then(data => res.send(data) )
 })
 
 module.exports = router
