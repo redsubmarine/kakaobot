@@ -39,7 +39,7 @@ module.exports = class Papago {
     }
   }
 
-  static getSupportedLangCode(key) {
+  getSupportedLangCode(key) {
     return SUPPORTED_LANG_CODE[key]
   }
 
