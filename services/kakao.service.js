@@ -22,7 +22,7 @@ module.exports = class KakaoService {
       },
       keyboard: {
         type: 'buttons',
-        buttons: ['한국어->영어', '한국어->중국어']
+        buttons: ['한국어->영어', '한국어->프랑스어']
       }
     }
   }

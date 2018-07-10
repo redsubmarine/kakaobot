@@ -21,7 +21,7 @@ module.exports = class Papago {
   }
 
   set sourceLangCode(key) {
-    this._sourceLangeCode = getSupportedLangCode[key]
+    this._sourceLangeCode = this.getSupportedLangCode[key]
   }
   
   get targetLangCode() {  
@@ -29,7 +29,7 @@ module.exports = class Papago {
   }
 
   set targetLangCode(key) {
-    this._targetLangeCode = getSupportedLangCode[key]
+    this._targetLangeCode = this.getSupportedLangCode[key]
   }
 
   getHeaders() {
