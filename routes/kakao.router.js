@@ -1,6 +1,9 @@
 const router = require('express').Router()
 const KakaoService = require('../services/kakao.service')
+const Dialog = require('../utils/Dialog')
+
 const kakaoService = new KakaoService()
+const dialog = new Dialog()
 
 router.get('/keyboard', (req, res) => {
   res.send({
@@ -11,7 +14,9 @@ router.get('/keyboard', (req, res) => {
 
 router.post('/message', (req, res) => {
   const { content, type } = req.body
-  
+  const reply = await kakaoService.getReply({ content, dialog, type })
+  res.send(reply)
+/*
   if (content === '번역언어 변경') {
     return res.send(kakaoService.getTrLanguages())
   }
@@ -22,6 +27,7 @@ router.post('/message', (req, res) => {
 
   kakaoService.translate(content)
     .then(data => res.send(data) )
+*/
 })
 
 module.exports = router

@@ -1,7 +1,12 @@
 const Papago = require('../utils/Papago')
 const papago = new Papago()
 
-module.exports = class KakaoService {
+class KakaoService {
+
+  getReply({ content, dialog, type }) {
+    return dialog.reply(content, dialog, type)
+  }
+
   changeLanguage(message) {
 
     const splitMessages = message.split('->')
@@ -26,11 +31,14 @@ module.exports = class KakaoService {
       }
     }
   }
-
+/*
   translateText(text) {
     return papago.translateText(text)
       .then(data => {
         return { message: { text} }
       })
   }
+*/
 }
+
+module.exports = KakaoService
