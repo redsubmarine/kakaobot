@@ -1,9 +1,9 @@
-const { TranslateContext } = require('../contexts')
+const { TranslateContext, ReadyToChangeLangContext } = require('../contexts')
 class ContextFactory {
   static getContext(type) {
     switch(type) {
       case IntentType.READY_LANG_CHANGE:
-        return ''
+        return new ReadyToChangeLangContext()
       default:
         return new TranslateContext()
     }

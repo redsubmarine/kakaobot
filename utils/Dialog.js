@@ -1,6 +1,6 @@
 const { ContextFactory } = require('../factories/context.factory')
 
-class Dialog {
+module.exports = class Dialog {
   constructor(context = ContextFactory.getContext()) {
     this.context = context
   }
@@ -10,4 +10,3 @@ class Dialog {
   }
 }
 
-module.exports = Dialog

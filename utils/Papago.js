@@ -43,7 +43,7 @@ module.exports = class Papago {
     return SUPPORTED_LANG_CODE[key]
   }
 
-  translate(text) {
+  translateText(text) {
     const options = {
       method: 'POST',
       uri: TRANSLATE_API,

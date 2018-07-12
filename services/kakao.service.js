@@ -1,44 +1,15 @@
+const { ContextFactory, IntentType } = require('../factories/context.factory')
 const Papago = require('../utils/Papago')
 const papago = new Papago()
 
-class KakaoService {
+module.exports = class KakaoService {
 
-  getReply({ content, dialog, type }) {
+  async getReply({ content, dialog, type }) {
+    if (content === IntentType.READY_LANG_CHANGE) {
+      dialog.context = ContextFactory.getContext(IntentType.READY_LANG_CHANGE)
+    }
     return dialog.reply(content, dialog, type)
   }
 
-  changeLanguage(message) {
-
-    const splitMessages = message.split('->')
-    papago.sourceLangCode = splitMessages[0]
-    papago.targetLangCode = splitMessages[1]
-
-    return {
-      message: {
-        text: `${message}로 언어가 변경되었습니다.`
-      }
-    }
-  }
-
-  getTrLanguages() {
-    return {
-      message: {
-        text: '번역 가능한 언어목록'
-      },
-      keyboard: {
-        type: 'buttons',
-        buttons: ['한국어->영어', '한국어->프랑스어']
-      }
-    }
-  }
-/*
-  translateText(text) {
-    return papago.translateText(text)
-      .then(data => {
-        return { message: { text} }
-      })
-  }
-*/
 }
 
-module.exports = KakaoService
