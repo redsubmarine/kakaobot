@@ -12,7 +12,7 @@ router.get('/keyboard', (req, res) => {
   })
 })
 
-router.post('/message', (req, res) => {
+router.post('/message', async (req, res) => {
   const { content, type } = req.body
   const reply = await kakaoService.getReply({ content, dialog, type })
   res.send(reply)

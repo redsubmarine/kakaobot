@@ -4,7 +4,7 @@ const papago = new Papago()
 
 module.exports = class KakaoService {
 
-  async getReply({ content, dialog, type }) {
+  getReply({ content, dialog, type }) {
     if (content === IntentType.READY_LANG_CHANGE) {
       dialog.context = ContextFactory.getContext(IntentType.READY_LANG_CHANGE)
     }
